@@ -1,9 +1,13 @@
+from django.shortcuts import render
 from .models import Thought, Comment
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView 
+from django.shortcuts import get_object_or_404, redirect
+from .forms import ShareThoughtForm
+
 
 
 # Create your views here.
@@ -66,3 +70,24 @@ class ThoughtUpdateView(UpdateView):
     fields = ['title','content', 'img', 'is_private']
 
     success_url = '/thought/ThoughtListView/'
+ 
+
+def share_thought(request, pk):
+    thought = get_object_or_404(Thought, pk=pk)
+
+    if request.method == 'POST':
+        form = ShareThoughtForm(request.POST)
+        if form.is_valid():
+            shared_with_users = form.cleaned_data['shared_with']
+
+            if request.user == thought.author:
+                pass
+            else:
+                thought.shared_with.add(*shared_with_users)
+                thought.save()
+
+            return redirect('ThoughtDetailView', pk=pk)
+    else:
+        form = ShareThoughtForm()
+
+    return render(request, 'share_thought.html', {'thought': thought, 'form': form})
