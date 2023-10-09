@@ -1,0 +1,12 @@
+{% include "header.html" %}
+{% block main %}
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock main %}
+{% include "footer.html" %}

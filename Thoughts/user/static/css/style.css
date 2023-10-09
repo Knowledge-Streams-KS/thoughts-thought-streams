@@ -1,0 +1,84 @@
+ /* Custom CSS for the comment section */
+ .comment-container {
+    margin-top: 20px;
+    background-color: #005246;
+}
+.comment {
+    background-color: #dbc4c4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.comment .user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    float: left;
+}
+.comment .user-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.comment-wrapper {
+    position: relative;
+}
+
+.comment-time {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #e71919; /* Optional: Set the color for the time */
+    font-size: 12px; /* Optional: Set the font size for the time */
+}
+
+.logo{
+    font-size: 2rem;
+    color: brown;
+    font-family: fantasy;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.navbar-brand img {
+    width: 169px;
+    height: 40px;
+}
+.nav-link {
+    font-size: 20px;
+    color: black !important;
+    font-family: Montserrat;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: -0.3px
+}
+.login-btn{
+    border-radius: 6px;
+    border: 1px solid var(--Actionable-Item, #18A0FB);
+    background: #E32934;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+}
+.register-btn{
+    border-radius: 6px;
+    border: 1px solid var(--Actionable-Item, #18A0FB);
+    background: #0D65A1;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+}
+.d-flex {
+    gap: 10px;
+}
+

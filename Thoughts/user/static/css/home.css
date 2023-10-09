@@ -1,0 +1,219 @@
+#fb{
+    width: 20px;
+    text-align: center;
+}
+#fb-btm {
+    width: 42px;
+    text-align: center;
+}
+
+/* button */
+.bg-primary{
+    background-color: var(--pink)!important;
+}
+
+/* text color */
+.text-primary{
+    color: var(--pink)!important;
+}
+
+/* navbar */
+.navbar{
+    -webkit-box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 9px 3px rgba(0, 0, 0, 0.1);
+}
+.navbar-brand img{
+    width: 200px;
+}
+.round-img{
+    height: auto;
+    width: 350px;
+}
+
+.navbar-brand span{
+    letter-spacing: 2px;
+    font-family: var(--lg-font);
+}
+.nav-link:hover{
+    color: var(--pink)!important;
+}
+.nav-item{
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+}
+.dropdown-toggle::after {
+    content: none; 
+}
+.custom-icon {
+    font-size: 12px; /* Adjust the font size as needed */
+}
+/* Reduce the height of the custom footer */
+.custom-footer {
+    height: 40px;
+    background-color: #005246;
+}
+.bottom-footer{
+    background-color: #005246;
+}
+
+.nav-text{
+    font-size: 12px;
+}
+.footer{
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Add shadow on top */
+    padding: 20px;
+    margin-top: 3rem;
+}
+
+/* header */
+#header{
+    /* background-image: url("{% static '/img/bgimg.jpg' %}"); */
+    background-color: #4c5758;
+}
+.onepage{
+    font-size: 4rem;
+    font-weight: 700;
+}
+.we-bring{
+    font-weight: 800;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 34px;
+    margin-bottom: 0px;
+}
+.header-text{
+    font-size: 18px;
+    line-height: 24px;
+}
+#right{
+    padding-left: 3rem;
+}
+
+
+/* title */
+.title h2::before{
+    position: absolute;
+    content: "";
+    width: 4px;
+    height: 50px;
+    background-color: var(--pink);
+    left: -20px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+}
+
+
+/* footer */
+footer .brand{
+    font-family: var(--lg-font);
+    letter-spacing: 2px;
+}
+footer a{
+    -webkit-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+footer a:hover{
+    color: var(--pink)!important;
+}
+
+/* media queries */
+@media(min-width: 992px){
+    .nav-item{
+        border-bottom: none;
+    }
+}
+
+
+.button-banner {
+ position: relative;
+ display: block;
+ padding: 10PX;
+border: none;
+ background: #ffffff;
+ color: #005246;
+ font-size: 20px;
+ font-family:"Bebas Neue";
+ font-weight:800;
+ }
+
+.button-banner::before{
+ position: absolute;
+ top: 0;
+ height: 0;
+ width: 0;
+ left:0;
+ border: 15px solid transparent;
+ border-top-color: rgb(238, 129, 51);
+ border-left-color: rgb(238, 129, 51);
+
+ content: "";
+ }
+ .button-banner::after {
+    content: "";
+    position: absolute;
+    top: 35%;
+    left: 4%;
+    transform: translate(-50%, -50%) rotate(135deg); /* Rotate by 45 degrees */
+    width: 13.5%;
+    height: 4px; /* Adjusted to create a line */
+    background-color: #005246; /* Color of the line */
+  }
+  
+
+  .btn-nav {
+    position: relative;
+    display: block;
+    padding: 30PX;
+    border: none;
+    color: #ffffff;
+    background-color: #005246;
+    font-size: 14px;
+    font-weight: 700;
+   
+    }
+   
+   .btn-nav::before{
+    position: absolute;
+    top: 0;
+    height: 0;
+    width: 0;
+    left:0;
+    border: 15px solid transparent;
+    border-top-color: rgb(238, 129, 51);
+    border-left-color: rgb(238, 129, 51);
+    content: "";
+    }
+    .btn-nav::after {
+        content: "";
+        position: absolute;
+        /* top: 10%; */
+        left: -14px;
+        transform: rotate(135deg); 
+        width: 40%;
+        height: 4px; 
+        background-color: #ffffff; 
+    }
+
+    .form-container {
+        border: solid 1px #005246;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+
+   
