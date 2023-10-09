@@ -1,0 +1,29 @@
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% include "header.html" %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1>Create a New Thought</h1>
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.content.id_for_label }}">Content</label>
+            {{ form.content }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.img.id_for_label }}">Image</label>
+            {{ form.img }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.is_private.id_for_label }}">Is Private</label>
+            {{ form.is_private }}
+        </div>
+        <button type="submit" class="btn btn-danger">Save</button>
+    </form>
+</div>
+{% endblock main %}
+{% include "footer.html" %}
