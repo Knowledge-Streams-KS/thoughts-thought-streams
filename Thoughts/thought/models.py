@@ -27,7 +27,7 @@ class Thought(models.Model):
 class Comment(models.Model):
     text =  models.TextField()
     time = models.DateTimeField(auto_now_add=True)
-    tweet = models.ForeignKey(Thought, on_delete=models.CASCADE)
+    thought = models.ForeignKey(Thought, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 

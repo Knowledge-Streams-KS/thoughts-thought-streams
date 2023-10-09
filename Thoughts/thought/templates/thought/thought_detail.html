@@ -1,0 +1,97 @@
+{% include "header.html" %}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Image column (left on larger screens) -->
+        <div class="col-md-6 order-md-1">
+            {% if object.img %}
+            <img src="{{ object.img.url }}" alt="Image" class="img-fluid" style="width: 300px; height: 300px;" >
+            {% else %}
+            <img src="placeholder-img.jpg" alt="No Image" class="img-fluid" style="width: 300px; height: 300px;">
+            {% endif %}
+        </div>
+        <!-- Content column (right on larger screens) -->
+        <div class="col-md-6 order-md-2">
+            <h2>Thought Detail</h2>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">Title</th>
+                        <td>{{ object.title }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Content</th>
+                        <td>{{ object.content }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Created at</th>
+                        <td>{{ object.created_at }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Author</th>
+                        <td>{{ object.author }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Private</th>
+                        <td>{{ object.is_private }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            {% if not object.is_private %}
+            <a href="{% url 'share-thought' object.pk %}" class="btn btn-primary">Share Thought</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5 px-5 py-5 bg-light">
+    <h2> Comments </h2>
+    <!-- Comment input and post button -->
+    
+
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post" action="{% url 'CommentCreateView' thought.id %}">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="text" class="form-control" placeholder="Write your comment...">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- Comment section -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="comment">
+                {% for comment in comments %}
+                <div class="comment-wrapper">
+                    <div class="user-name">{{ comment.user.username }}</div>
+                    {{ comment.text }}
+                    <div class="comment-time">{{ comment.time }}</div>
+                </div>
+                <hr style="margin-bottom: 10px;">
+                {% empty %}
+                <li>Be the first one to comment.</li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+{% include "footer.html" %}
