@@ -1,0 +1,36 @@
+{% include "header.html" %}
+
+{% block main %}
+
+<div class="container profile-container mt-7 ">
+    <h1 style="font-weight: bolder; color: #65ca7e;" class="profile-heading mt-3 mb-5">Profile Page</h1>
+    <div class="bg-dark p-5">
+    <div class="d-flex mt-3">
+        <div class="col-md-5 profile-picture">
+            <!-- Display the user's picture here if it exists -->
+            {% if user_profile.img %}
+                <img width="100%" src="{{ user_profile.img.url }}" alt="User Picture" class="img-fluid" style="max-height: 250px;">
+            {% else %}
+                <p style="color: white;">No image</p>
+            {% endif %}
+        </div>
+        <div class="col-md-8 profile-details">
+            <h2 style="color: white;">{{ user_profile.user.username }}</h2><hr><br>
+            <p style="color: white;"><strong>Bio:</strong> {{ user_profile.bio }}</p><br>
+            <p style="color: white;"><strong>Address:</strong> {{ user_profile.address }}</p><br>
+            <p style="color: white;"><strong>Email Address:</strong> {{ user_profile.user.email }}</p><br>
+            <p style="color: white;"><strong>Is Active:</strong> {{ user_profile.user.is_active }}</p><br>
+            <!-- Add more profile details as needed -->
+        </div>
+
+       
+        
+    </div>
+    <div class="col-md-8 profile-details">
+        <a href="{% url 'profile-update' user_profile.pk %}" class="btn btn-primary">Update Profile</a>
+    </div>
+    </div>
+</div>
+
+{% endblock main %}
+{% include "footer.html" %}
