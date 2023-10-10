@@ -97,3 +97,12 @@ class SharedWithMe(ListView):
     
     def get_queryset(self):
         return Thought.objects.filter(shared_with=self.request.user)
+    
+
+
+class MyThoughts(ListView):
+    model = Thought
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        return Thought.objects.filter(author=self.request.user)

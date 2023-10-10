@@ -8,6 +8,7 @@
             <div class="card">
                 
                 <img src="{% if thought.img %}{{ thought.img.url }}{% else %}No Image{% endif %}" class="card-img-top" width="300" height="250">
+                
                 <div class="card-body">
                     <h2 class="card-title">{{ thought.title }}</h2>
                     <a href="/thought/ThoughtDetailView/{{ thought.id }}" class="btn btn-primary">View Details</a>
