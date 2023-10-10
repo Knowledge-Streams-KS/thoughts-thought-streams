@@ -5,6 +5,8 @@ from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView 
 from django.urls import reverse
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
 
 
 
@@ -24,7 +26,6 @@ def SignupPage(request):
         if pass1!=pass2:
             error_message = "Your password and confirm password are not the same!!"
 
-            # return HttpResponse("Your password and confirm password are not Same!!")
         else:
 
             my_user=User.objects.create_user(uname,email,pass1)
@@ -99,4 +100,3 @@ class UserListView(ListView):
     model = User
     
     
-
