@@ -8,7 +8,7 @@ class ShareThoughtForm(forms.Form):
     shared_with = forms.ModelMultipleChoiceField(
         queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        required=False,  # Users are not required to select anyone
+        required=False,  
     )
 
     # def __init__(self, *args, **kwargs):
