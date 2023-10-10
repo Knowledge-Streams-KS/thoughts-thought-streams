@@ -10,6 +10,8 @@ urlpatterns = [
     path('ThoughtUpdateView/<int:pk>', views.ThoughtUpdateView.as_view(), name= 'ThoughtUpdateView'),
     path('share/<int:pk>/', views.share_thought, name='share-thought'),
     path('SharedWithMe/', views.SharedWithMe.as_view(), name='SharedWithMe'),
+    path('MyThoughts/', views.MyThoughts.as_view(), name= 'MyThoughts'),
+
 
 
 
