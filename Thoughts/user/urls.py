@@ -16,6 +16,7 @@ urlpatterns = [
 
 
     path('UserListView/', views.UserListView.as_view(), name= 'UserListView'),
+    path('UserDetailView/<int:id>/', views.userDetail, name= 'UserDetailView'),
 
 
     

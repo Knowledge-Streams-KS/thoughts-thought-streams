@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from .models import User,Profile
+from thought.models import Thought
 from django.contrib.auth import authenticate,login,logout
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView 
@@ -100,3 +101,9 @@ class UserListView(ListView):
     model = User
     
     
+def userDetail(request, id):
+    print(id)
+    detail = Thought.objects.filter(author__id=id)
+    author = User.objects.get(id=id)
+    
+    return render(request, 'user_detail.html' , {'detail':detail, 'author':author} )

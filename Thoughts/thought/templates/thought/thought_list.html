@@ -1,8 +1,8 @@
-{% include "header.html" %}
+{% extends "base.html" %}
 
+{% block main %}
 <div class="container mt-5">
     <div class="row">
-        {% block main %}
         {% for thought in object_list %}
         <div class="col-md-4 mb-4">
             <div class="card" style="height: 370px; width:358px ;">
@@ -20,8 +20,8 @@
             
         </div>
         {% endfor %}
-        {% endblock main %}
     </div>
 </div>
+{% endblock main %}
 
-{% include "footer.html" %}
+

@@ -1,5 +1,4 @@
-{% include "header.html" %}
-
+{% extends "base.html" %}
 {% block main %}
 
 <div class="container profile-container mt-7 ">
@@ -9,7 +8,7 @@
         <div class="col-md-5 profile-picture">
             <!-- Display the user's picture here if it exists -->
             {% if user_profile.img %}
-                <img width="100%" src="{{ user_profile.img.url }}" alt="User Picture" class="img-fluid" style="max-height: 250px;">
+                <img width="80%" src="{{ user_profile.img.url }}" alt="User Picture" class="img-fluid" style="max-height: 250px;">
             {% else %}
                 <p style="color: white;">No image</p>
             {% endif %}
@@ -19,7 +18,6 @@
             <p style="color: white;"><strong>Bio:</strong> {{ user_profile.bio }}</p><br>
             <p style="color: white;"><strong>Address:</strong> {{ user_profile.address }}</p><br>
             <p style="color: white;"><strong>Email Address:</strong> {{ user_profile.user.email }}</p><br>
-            <p style="color: white;"><strong>Is Active:</strong> {{ user_profile.user.is_active }}</p><br>
             <!-- Add more profile details as needed -->
         </div>
 
@@ -33,4 +31,4 @@
 </div>
 
 {% endblock main %}
-{% include "footer.html" %}
+

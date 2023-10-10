@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.urls import path,include
 from .settings import MEDIA_ROOT,MEDIA_URL
 from django.conf.urls.static import static
+from user.views import HomePage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
-    path('thought/', include('thought.urls'))
+    path('thought/', include('thought.urls')),
+    path('', HomePage,name='home'),
+
 ]
 
 urlpatterns += static(MEDIA_URL,document_root=MEDIA_ROOT)
