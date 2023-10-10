@@ -1,5 +1,3 @@
-{% extends "base.html" %}
-{% block main %}
 <section class=" footer py-5">
     <div class="container">
         <div class="row text-white g-4">
@@ -13,27 +11,27 @@
                 <h5 class="text-dark mt-1">QUICK LINK</h5>
                 <ul class="list-unstyled mt-4">
                     <li class="my-2">
-                        <a href="#" class="text-dark text-decoration-none ">
+                        <a href="#" class="footer-links text-dark text-decoration-none ">
                             <i class="fas fa-chevron-right me-1"></i> Home
                         </a>
                     </li>
                     <li class="my-2">
-                        <a href="#" class="text-dark text-decoration-none ">
+                        <a href="#" class="footer-links text-dark text-decoration-none ">
                             <i class="fas fa-chevron-right me-1"></i> About Us
                         </a>
                     </li>
                     <li class="my-2">
-                        <a href="#" class="text-dark text-decoration-none ">
+                        <a href="#" class="footer-links text-dark text-decoration-none ">
                             <i class="fas fa-chevron-right me-1"></i> Our Services
                         </a>
                     </li>
                     <li class="my-2">
-                        <a href="#" class="text-dark text-decoration-none ">
+                        <a href="#" class="footer-links text-dark text-decoration-none ">
                             <i class="fas fa-chevron-right me-1"></i> Projects
                         </a>
                     </li>
                     <li class="my-2">
-                        <a href="#" class="text-dark text-decoration-none ">
+                        <a href="#" class="footer-links text-dark text-decoration-none ">
                             <i class="fas fa-chevron-right me-1"></i> Contact Us
                         </a>
                     </li>
@@ -47,6 +45,36 @@
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     <p>Mobile: +44 (123) 456 7890</p>
                     <p>Email: info@solicitortool.com</p>
+                    <div class="col-md-6 col-lg-3">
+                        <ul class="list-unstyled d-flex">
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="Facebook">
+                                    <i class="fab fa-facebook-f  p-2 rounded-circle" id="fb-btm"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="Twitter">
+                                    <i class="fab fa-twitter  p-2 rounded-circle"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="YouTube">
+                                    <i class="fab fa-youtube  p-2 rounded-circle"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="Pinterest">
+                                    <i class="fab fa-pinterest p-2 rounded-circle"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="WhatsApp">
+                                    <i class="fab fa-whatsapp  p-2 rounded-circle"></i>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                </div>
                 </div>
             </div>
         </div>
@@ -58,45 +86,13 @@
 <!-- footer -->
 <footer class="py-3 bottom-footer ">
     <div class="container">
-        <div class="row text-white g-4">
+        <div class="row text-white">
             <div class="col-md-6 col-lg-8">
                 
                 <p class="text-light mt-3">© Copyright 2022 | CP Checklist | All Rights Reserved</p>
             </div>
 
-            <div class="col-md-6 col-lg-3">
-                <div>
-                    <ul class="list-unstyled d-flex">
-                        <li>
-                            <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="Facebook">
-                                <i class="fab fa-facebook-f bg-light p-2 rounded-circle" id="fb-btm"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="Twitter">
-                                <i class="fab fa-twitter bg-light p-2 rounded-circle"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="YouTube">
-                                <i class="fab fa-youtube bg-light p-2 rounded-circle"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="Pinterest">
-                                <i class="fab fa-pinterest bg-light p-2 rounded-circle"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-white text-decoration-none text-muted fs-4 me-4" aria-label="WhatsApp">
-                                <i class="fab fa-whatsapp bg-light p-2 rounded-circle"></i>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
+
         </div>
     </div>
 </footer>
-{% endblock main %}

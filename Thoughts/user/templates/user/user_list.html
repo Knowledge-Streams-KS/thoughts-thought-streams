@@ -1,10 +1,10 @@
-{% include "header.html" %}
+{% extends "base.html" %}
 {% block main %}
 
 <div class="container mt-5" >
     <!-- Content Row -->
 
-    <table id="table" data-toggle="table" data-search="true">
+    <table class="table" id="table" data-toggle="table" data-search="true">
         <thead>
             <tr>
 
@@ -18,9 +18,8 @@
             <tr>
                 <td> {{ user.username }}</td>
                 <td>{{ user.email }} </td>
-                <td> View Details </td>
 
-                <!-- <td> <a href="{% url 'home' %}">View detail</a> </td> -->
+                <td> <a href="{% url 'UserDetailView' user.id %}">View detail</a> </td> 
             </tr>
             {% endfor %}
 
