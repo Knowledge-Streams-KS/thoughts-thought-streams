@@ -1,0 +1,28 @@
+{% include "header.html" %}
+{% block main %}
+
+
+<h1>Shared With Me</h1>
+  {% if thoughts %}
+    <ul>
+      {% for thought in thoughts %}
+        <li>
+          <strong>{{ thought.title }}</strong> by {{ thought.author.username }}<br>
+          {{ thought.content }}<br>
+          Shared by: 
+          {% for user in thought.shared_with.all %}
+            {{ user.username }}
+            {% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No thoughts shared with you yet.</p>
+  {% endif %}
+
+  
+
+{% endblock main %}
+
+{% include "footer.html" %}

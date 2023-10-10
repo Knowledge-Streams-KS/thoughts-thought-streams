@@ -79,15 +79,23 @@ def share_thought(request, pk):
         form = ShareThoughtForm(request.POST)
         if form.is_valid():
             shared_with_users = form.cleaned_data['shared_with']
-
-            if request.user == thought.author:
-                pass
-            else:
-                thought.shared_with.add(*shared_with_users)
-                thought.save()
+            thought.shared_with.add(*shared_with_users)
+            thought.save()               
 
             return redirect('ThoughtDetailView', pk=pk)
     else:
         form = ShareThoughtForm()
 
     return render(request, 'share_thought.html', {'thought': thought, 'form': form})
+
+
+
+
+class SharedWithMe(ListView):
+    model = Thought
+    template_name = 'shared_with_me.html'  # Replace with your template name
+    context_object_name = 'thoughts'
+    
+    def get_queryset(self):
+        # Return the thoughts that are shared with the current user
+        return Thought.objects.filter(shared_with=self.request.user)

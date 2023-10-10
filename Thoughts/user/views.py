@@ -40,7 +40,7 @@ def LoginPage(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('ProfileCreateView')
+            return redirect('home')
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
 
@@ -49,7 +49,7 @@ def LoginPage(request):
 
 def LogoutPage(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 

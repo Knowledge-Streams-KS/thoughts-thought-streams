@@ -9,5 +9,10 @@ urlpatterns = [
     path('CommentCreateView/<int:thought_id>', views.CommentCreateView.as_view(), name= 'CommentCreateView'),
     path('ThoughtUpdateView/<int:pk>', views.ThoughtUpdateView.as_view(), name= 'ThoughtUpdateView'),
     path('share/<int:pk>/', views.share_thought, name='share-thought'),
+    path('SharedWithMe/', views.SharedWithMe.as_view(), name='SharedWithMe'),
+
+
+
+
 
 ]

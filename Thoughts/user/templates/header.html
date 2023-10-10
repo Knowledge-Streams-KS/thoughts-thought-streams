@@ -14,6 +14,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto ">
 
+                {% if request.user.is_authenticated %}
+
                 <li class="nav-item">
                     <a href="{% url 'ThoughtCreateView' %}" class="nav-link " aria-current="page" href="#">Create-Thought</a>                    
                 </li>
@@ -23,6 +25,7 @@
                     <a href="{% url 'ThoughtListView' %}" class="nav-link " aria-current="page" href="#">All-Thoughts</a>                
                 </li>
 
+
                 <li class="nav-item">
                     <a href="{% url 'UserListView' %}" class="nav-link " aria-current="page" href="#">All-Users</a>
                 </li>
@@ -31,15 +34,25 @@
                 <li class="nav-item">
                     <a href="{% url 'ProfileDetail' %}" class="nav-link " aria-current="page" href="#">My Profile</a>
                 </li>
+
                 
+                <li class="nav-item">
+                    <a href="{% url 'SharedWithMe' %}" class="nav-link " aria-current="page" href="#">Shared-with-me</a>
+                </li>
+
+
             <ul class="d-flex mt-3 mx-lg-2">
 
                 <a href="{% url 'logout' %}" class="btn btn-danger px-lg-4">Logout</a>
              
+                {% else %}
+                <a href="{% url 'home' %}" class="nav-link " aria-current="page" href="#">Home</a>                   
+
                 <a href="{% url 'signup' %}" class="btn btn-primary px-lg-4">SignUp</a>
                 <a href="{% url 'login' %}" class="btn btn-success px-lg-4">Login</a>
         
-            
+                {% endif %}
+
             </ul>
             <ul class="list-unstyled d-flex mt-3">
                 <li class="mr-2"><img src="./assets/user.svg" alt=""></li>
