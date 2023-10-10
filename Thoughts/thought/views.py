@@ -50,8 +50,6 @@ class CommentCreateView(CreateView):
     model = Comment
     fields = ['text']
 
-    # success_url = '/thought/ThoughtListView/'
-
     def form_valid(self, form):
         thought_id = self.kwargs['thought_id']  
         thought = Thought.objects.get(id=thought_id)
@@ -93,9 +91,9 @@ def share_thought(request, pk):
 
 class SharedWithMe(ListView):
     model = Thought
-    template_name = 'shared_with_me.html'  # Replace with your template name
+
+    template_name = 'shared_with_me.html'  
     context_object_name = 'thoughts'
     
     def get_queryset(self):
-        # Return the thoughts that are shared with the current user
         return Thought.objects.filter(shared_with=self.request.user)

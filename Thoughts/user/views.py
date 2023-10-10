@@ -22,14 +22,18 @@ def SignupPage(request):
         pass2=request.POST.get('password2')
 
         if pass1!=pass2:
-            return HttpResponse("Your password and confirm password are not Same!!")
+            error_message = "Your password and confirm password are not the same!!"
+
+            # return HttpResponse("Your password and confirm password are not Same!!")
         else:
 
             my_user=User.objects.create_user(uname,email,pass1)
             my_user.save()
             return redirect('login')
+    else:
+        error_message = ""
 
-    return render (request,'signup.html')
+    return render (request,'signup.html' , {'error_message': error_message})
 
 
 
@@ -40,9 +44,9 @@ def LoginPage(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request,user)
-            return redirect('home')
+            return redirect('ThoughtListView')
         else:
-            return HttpResponse ("Username or Password is incorrect!!!")
+            return redirect('login')
 
     return render (request,'login.html')
 
@@ -50,7 +54,6 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('home')
-
 
 
 
@@ -75,9 +78,7 @@ class ProfileCreateView(CreateView):
 def ProfileDetail(request):
     user_profile, created = Profile.objects.get_or_create(user=request.user)
 
-    # Check if a profile was just created
     if created:
-        # Redirect to the ProfileCreateView
         return redirect(reverse('ProfileCreateView'))
 
     return render(request, 'Profile.html', {'user_profile': user_profile})
@@ -90,7 +91,6 @@ class ProfileUpdateView(UpdateView):
     success_url = '/user/user/profile/'
 
     def get_object(self, queryset=None):
-        # Fetch the user's profile by filtering on the user attribute
         return Profile.objects.get(user=self.request.user)
 
 
@@ -99,5 +99,4 @@ class UserListView(ListView):
     model = User
     
     
-class UserListView(ListView):
-    model = User 
+
