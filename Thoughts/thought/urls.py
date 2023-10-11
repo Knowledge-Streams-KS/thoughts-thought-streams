@@ -11,7 +11,7 @@ urlpatterns = [
     path('share/<int:pk>/', views.share_thought, name='share-thought'),
     path('SharedWithMe/', views.SharedWithMe.as_view(), name='SharedWithMe'),
     path('MyThoughts/', views.MyThoughts.as_view(), name= 'MyThoughts'),
-
+    path('ThoughtDeleteView/<int:pk>', views.ThoughtDeleteView.as_view(), name= 'ThoughtDeleteView'),
 
 
 

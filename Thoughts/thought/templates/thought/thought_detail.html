@@ -42,7 +42,7 @@
             <a href="{% url 'share-thought' object.pk %}" class="btn btn-primary">Share Thought</a>
             {% if request.user == object.author %}
             <a href="{% url 'ThoughtUpdateView' object.pk %}" class="btn btn-primary">Update Thought</a>
-            <a href="{% url 'ThoughtUpdateView' object.pk %}" class="btn btn-primary" style="background-color: red;">Delete</a>
+            <a href="{% url 'ThoughtDeleteView' object.pk %}" class="btn btn-primary" style="background-color: red;">Delete</a>
 
             {% endif %}
         {% endif %}
