@@ -3,6 +3,7 @@ from .models import Thought, Comment
 from django.views.generic import CreateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView 
 from django.shortcuts import get_object_or_404, redirect
@@ -106,3 +107,10 @@ class MyThoughts(ListView):
 
     def get_queryset(self):
         return Thought.objects.filter(author=self.request.user)
+    
+
+
+class ThoughtDeleteView(DeleteView):
+    model = Thought
+    
+    success_url = '/thought/ThoughtListView/'
