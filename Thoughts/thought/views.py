@@ -28,7 +28,19 @@ class ThoughtCreateView(CreateView):
 
 class ThoughtListView(ListView):
     model = Thought
-    ordering = ['-created_at'] 
+    # ordering = ['-created_at'] 
+
+    def get_queryset(self):
+        return Thought.objects.all().filter(is_private = False).order_by('-created_at')
+    
+
+
+class MyThoughts(ListView):
+    model = Thought
+    ordering = ['-created_at']
+
+    def get_queryset(self):
+        return Thought.objects.filter(author=self.request.user).order_by('-created_at')
 
 
 
@@ -101,12 +113,7 @@ class SharedWithMe(ListView):
     
 
 
-class MyThoughts(ListView):
-    model = Thought
-    ordering = ['-created_at']
 
-    def get_queryset(self):
-        return Thought.objects.filter(author=self.request.user)
     
 
 
