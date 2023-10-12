@@ -5,6 +5,8 @@
     <h1>Create a New Thought</h1>
     <form method="post" enctype="multipart/form-data" class="form">
         {% csrf_token %}
+
+        
         <div class="form-group">
             <label for="{{ form.title.id_for_label }}">Title</label>
             {{ form.title }}

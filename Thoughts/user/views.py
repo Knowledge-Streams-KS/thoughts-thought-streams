@@ -25,17 +25,16 @@ def SignupPage(request):
         pass2=request.POST.get('password2')
 
         if pass1!=pass2:
-            error_message = "Your password and confirm password are not the same!!"
+            error_message = "Password do not match!!"
+            return render (request,'signup.html' , {'error_message': error_message})
 
         else:
 
             my_user=User.objects.create_user(uname,email,pass1)
             my_user.save()
-            return redirect('login')
-    else:
-        error_message = ""
+            return redirect('login')    
 
-    return render (request,'signup.html' , {'error_message': error_message})
+    return render (request,'signup.html')
 
 
 
@@ -79,7 +78,7 @@ class ProfileCreateView(CreateView):
 
 def ProfileDetail(request):
     user_profile, created = Profile.objects.get_or_create(user=request.user)
-
+    
     if created:
         return redirect(reverse('ProfileCreateView'))
 
@@ -90,9 +89,9 @@ def ProfileDetail(request):
 class ProfileUpdateView(UpdateView):
     model = Profile
     fields = ['bio', 'address', 'img']
-    success_url = '/user/user/profile/'
+    success_url = '/user/profile/'
 
-    def get_object(self, queryset=None):
+    def get_object(self):
         return Profile.objects.get(user=self.request.user)
 
 
@@ -101,8 +100,8 @@ class UserListView(ListView):
     model = User
     
     
+    
 def userDetail(request, id):
-    print(id)
     detail = Thought.objects.filter(author__id=id)
     author = User.objects.get(id=id)
     

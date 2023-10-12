@@ -25,6 +25,7 @@ class ThoughtCreateView(CreateView):
         return super().form_valid(form)
 
 
+
 class ThoughtListView(ListView):
     model = Thought
     ordering = ['-created_at'] 
@@ -37,13 +38,12 @@ class ThoughtDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        thought = context['object']  # Get the thought object
+        thought = context['object']  
         comments = Comment.objects.filter(thought=thought)
         context['comments'] = comments
         context['comments'] = thought.comment_set.order_by('-time')
 
         return context
-
 
 
 
