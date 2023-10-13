@@ -114,9 +114,6 @@ class SharedWithMe(ListView):
 
 
 
-    
-
-
 class ThoughtDeleteView(DeleteView):
     model = Thought
     
