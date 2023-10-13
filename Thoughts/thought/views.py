@@ -13,38 +13,42 @@ from .forms import ShareThoughtForm
 
 # Create your views here.
 
-
+# VIEW FOR CREATE THOUGHT
 class ThoughtCreateView(CreateView):
     model = Thought
     fields = ['title','content',  'img', 'is_private']
 
     success_url = '/thought/ThoughtListView/'
 
+#  TO GET THE REQUESTED USER
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
 
+# VIEW FOR THOUGHT LIST
 class ThoughtListView(ListView):
     model = Thought
-    # ordering = ['-created_at'] 
 
+#GET QUERYSET OF PUBLIC THOUGHTS
     def get_queryset(self):
         return Thought.objects.all().filter(is_private = False).order_by('-created_at')
     
 
 
+# VIEW FOR ALL MY THOUGHTS
 class MyThoughts(ListView):
     model = Thought
     ordering = ['-created_at']
 
+# GET QUERYSET OF LOGED IN USER 
     def get_queryset(self):
         return Thought.objects.filter(author=self.request.user).order_by('-created_at')
 
 
 
-#  DETAIL VIEW
+#  THOUGHT DETAIL VIEW
 class ThoughtDetailView(DetailView):
     model = Thought
 
@@ -58,7 +62,7 @@ class ThoughtDetailView(DetailView):
         return context
 
 
-
+# COMMENT ON THOUGHT VIEW
 class CommentCreateView(CreateView):
     model = Comment
     fields = ['text']
@@ -75,7 +79,7 @@ class CommentCreateView(CreateView):
 
 
 
-
+# UPDATE THE THOUGHT VIEW
 class ThoughtUpdateView(UpdateView):
     model = Thought
     fields = ['title','content', 'img', 'is_private']
@@ -83,6 +87,7 @@ class ThoughtUpdateView(UpdateView):
     success_url = '/thought/ThoughtListView/'
  
 
+# SHARE THE THOUGHT VIEW
 def share_thought(request, pk):
     thought = get_object_or_404(Thought, pk=pk)
 
@@ -101,7 +106,7 @@ def share_thought(request, pk):
 
 
 
-
+# TO CHECK THE SHARE THEOUGHT WITH ME 
 class SharedWithMe(ListView):
     model = Thought
 
@@ -113,7 +118,7 @@ class SharedWithMe(ListView):
     
 
 
-
+# DELETE THOUGHT VIEW
 class ThoughtDeleteView(DeleteView):
     model = Thought
     
