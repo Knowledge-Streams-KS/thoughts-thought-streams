@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import UpdateView 
 from django.shortcuts import get_object_or_404, redirect
 from .forms import ShareThoughtForm
-
+ 
 
 
 # Create your views here.
@@ -27,13 +27,27 @@ class ThoughtCreateView(CreateView):
 
 
 
-# VIEW FOR THOUGHT LIST
+# # VIEW FOR THOUGHT LIST
+# class ThoughtListView(ListView):
+#     model = Thought
+
+# #GET QUERYSET OF PUBLIC THOUGHTS
+#     def get_queryset(self):
+#         return Thought.objects.all().filter(is_private = False).order_by('-created_at')
+
+
+
 class ThoughtListView(ListView):
     model = Thought
 
-#GET QUERYSET OF PUBLIC THOUGHTS
     def get_queryset(self):
-        return Thought.objects.all().filter(is_private = False).order_by('-created_at')
+        query = self.request.GET.get('search')
+        if query:
+            object_list = Thought.objects.filter(title__icontains=query, is_private=False).order_by('-created_at')
+        else:
+            object_list = Thought.objects.filter(is_private=False).order_by('-created_at')
+        return object_list
+
     
 
 
@@ -123,3 +137,17 @@ class ThoughtDeleteView(DeleteView):
     model = Thought
     
     success_url = '/thought/ThoughtListView/'
+
+
+
+
+# def search(request):
+#     search = request.GET.get('search')
+#     if search:
+#         if search == '' or search == None:
+#             thoughts = Thought.objects.filter.all().order_by('-created_at')
+#             return render(request, 'thought_list.html', {'thoughts': thoughts})
+#         else:
+#             thoughts = Thought.objects.filter(title__contains=search).all()
+#             return render(request, 'thought_list.html', {'thoughts': thoughts})
+                                                 
