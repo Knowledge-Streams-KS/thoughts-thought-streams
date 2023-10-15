@@ -31,6 +31,8 @@ class ThoughtCreateView(CreateView):
 
 class ThoughtListView(ListView):
     model = Thought
+    paginate_by = 9
+
 
     def get_queryset(self):
         query = self.request.GET.get('search')
@@ -45,7 +47,6 @@ class ThoughtListView(ListView):
         context = super().get_context_data(**kwargs)     
         context['all_thoughts'] = True
         return context
-
 
 
     
