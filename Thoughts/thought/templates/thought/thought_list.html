@@ -2,7 +2,8 @@
 
 {% block main %}
 
-  <form method="get" class="d-flex justify-content-center  py-2 mb-5" action="{% url 'ThoughtListView' %}">
+
+  <form method="get" class="d-flex justify-content-center  py-2 mb-5" action="{% if all_thoughts %}{% url 'ThoughtListView' %}{% elif my_thoughts %}{% url 'MyThoughts' %}{% endif %}">
     <input class="form-control me-2 w-50 search-bar" type="search" name="search" {% if request.GET.search %} value="{{ request.GET.search }}" {% endif %} placeholder="Enter Title" aria-label="Search">
     <button class="btn btn-dark" type="submit">Search</button>
 </form>
@@ -19,6 +20,7 @@
                 <img src="{{ thought.img.url }}" alt='No img' class="card-img-top" width="300" height="250">
                 {% else %}
                <p style="height: 250px; width: 300px;"> {{ thought.content }} </p>
+               {{ object_list.Flag }}
 
                 {% endif %}
                 <div class="card-body">

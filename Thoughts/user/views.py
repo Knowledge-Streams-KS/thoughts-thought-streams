@@ -25,7 +25,6 @@ def SignupPage(request):
         pass1=request.POST.get('password1')
         pass2=request.POST.get('password2')
 
-# Match password and confirm password if password do not match show error otherwise create user
         if pass1!=pass2:
             error_message = "Password do not match!!"
             return render (request,'signup.html' , {'error_message': error_message})
@@ -40,15 +39,12 @@ def SignupPage(request):
 
 
 
-def LoginPage(request):
-    
-# If their is post request then authenticate user
+def LoginPage(request):    
     if request.method=='POST':
         username=request.POST.get('username')
         pass1=request.POST.get('pass')
         user=authenticate(request,username=username,password=pass1)
         
-# if user is authenticated then login user       
         if user is not None:
             login(request,user)
             return redirect('ThoughtListView')
@@ -69,7 +65,6 @@ class ProfileCreateView(CreateView):
     model = Profile
     fields = ['bio', 'address', 'img']
 
-# CHECK IF PROFILE EXIST THEN MOVE REDIRECT TO PROFILE DETAILS OTHERWISE CREATE THE PROFILE
     def form_valid(self, form):
         user_profile, created = Profile.objects.get_or_create(user=self.request.user)
 
@@ -89,7 +84,8 @@ def ProfileDetail(request):
     if created:
         return redirect(reverse('ProfileCreateView'))
 
-    return render(request, 'Profile.html', {'user_profile': user_profile})
+    return render(request, 'profile.html', {'user_profile': user_profile})
+
 
 
 # VIEW FOR PROFILE UPDATE
@@ -102,9 +98,11 @@ class ProfileUpdateView(UpdateView):
         return Profile.objects.get(user=self.request.user)
 
 
+
 # VIEW FOR USER LIST
 class UserListView(ListView):
     model = User
+    
     
     
 # VIEW FOR USER DETAILS    

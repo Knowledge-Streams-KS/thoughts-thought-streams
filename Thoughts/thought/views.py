@@ -28,14 +28,6 @@ class ThoughtCreateView(CreateView):
 
 
 # # VIEW FOR THOUGHT LIST
-# class ThoughtListView(ListView):
-#     model = Thought
-
-# #GET QUERYSET OF PUBLIC THOUGHTS
-#     def get_queryset(self):
-#         return Thought.objects.all().filter(is_private = False).order_by('-created_at')
-
-
 
 class ThoughtListView(ListView):
     model = Thought
@@ -47,6 +39,14 @@ class ThoughtListView(ListView):
         else:
             object_list = Thought.objects.filter(is_private=False).order_by('-created_at')
         return object_list
+    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)     
+        context['all_thoughts'] = True
+        return context
+
+
 
     
 
@@ -56,9 +56,18 @@ class MyThoughts(ListView):
     model = Thought
     ordering = ['-created_at']
 
-# GET QUERYSET OF LOGED IN USER 
     def get_queryset(self):
-        return Thought.objects.filter(author=self.request.user).order_by('-created_at')
+        query = self.request.GET.get('search')
+        if query:
+            object_list = Thought.objects.filter(title__icontains=query, author=self.request.user).order_by('-created_at')
+        else:
+            object_list = Thought.objects.filter(author=self.request.user).order_by('-created_at')
+        return object_list
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)     
+        context['my_thoughts'] = True
+        return context
 
 
 
@@ -74,6 +83,7 @@ class ThoughtDetailView(DetailView):
         context['comments'] = thought.comment_set.order_by('-time')
 
         return context
+
 
 
 # COMMENT ON THOUGHT VIEW
@@ -100,6 +110,7 @@ class ThoughtUpdateView(UpdateView):
 
     success_url = '/thought/ThoughtListView/'
  
+
 
 # SHARE THE THOUGHT VIEW
 def share_thought(request, pk):
@@ -139,15 +150,3 @@ class ThoughtDeleteView(DeleteView):
     success_url = '/thought/ThoughtListView/'
 
 
-
-
-# def search(request):
-#     search = request.GET.get('search')
-#     if search:
-#         if search == '' or search == None:
-#             thoughts = Thought.objects.filter.all().order_by('-created_at')
-#             return render(request, 'thought_list.html', {'thoughts': thoughts})
-#         else:
-#             thoughts = Thought.objects.filter(title__contains=search).all()
-#             return render(request, 'thought_list.html', {'thoughts': thoughts})
-                                                 
