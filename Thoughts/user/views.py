@@ -12,48 +12,83 @@ from django.views.generic.detail import DetailView
 
 # Create your views here.
 
-
+# VIEW FOR HOMEPAGE
 def HomePage(request):
     return render (request,'home.html')
 
 
-
+# VIEW FOR SIGNUP PAGE
 def SignupPage(request):
-    if request.method=='POST':
-        uname=request.POST.get('username')
-        email=request.POST.get('email')
-        pass1=request.POST.get('password1')
-        pass2=request.POST.get('password2')
+    try:
+        if request.method=='POST':
+            uname=request.POST.get('username')
+            email=request.POST.get('email')
+            pass1=request.POST.get('password1')
+            pass2=request.POST.get('password2')
 
-        if pass1!=pass2:
-            error_message = "Password do not match!!"
-            return render (request,'signup.html' , {'error_message': error_message})
+            if not email or not uname or not pass1:
+                error_message = "All fields required"
+                return render (request,'signup.html' , {'error_message': error_message})
 
-        else:
-
-            my_user=User.objects.create_user(uname,email,pass1)
-            my_user.save()
-            return redirect('login')    
-
-    return render (request,'signup.html')
+                
+            user = User.objects.filter(username=uname)
+            email = User.objects.filter(email=email)            
 
 
+            if user:
+                error_message = "Username already exists"
+                return render (request,'signup.html' , {'error_message': error_message})
 
-def LoginPage(request):    
-    if request.method=='POST':
-        username=request.POST.get('username')
-        pass1=request.POST.get('pass')
-        user=authenticate(request,username=username,password=pass1)
-        
-        if user is not None:
-            login(request,user)
-            return redirect('ThoughtListView')
-        else:
-            return redirect('login')
+            elif email:
+                error_message = "Email already exists"
+                print(email)
+                return render (request,'signup.html' , {'error_message': error_message})
+                
+            elif pass1!=pass2:
+                error_message = "Password do not match!!"
+                return render (request,'signup.html' , {'error_message': error_message})
+            
+            elif len(pass1)<=8:
+                error_message = "Password must be 8 character atleast!!"
+                return render (request,'signup.html' , {'error_message': error_message})
 
-    return render (request,'login.html')
+            else:
+                my_user=User.objects.create_user(uname,email,pass1)
+                my_user.save()
+                return redirect('login')    
+
+        return render (request,'signup.html')
+    
+    except:
+        error_message = "All fields required"
+        return render (request,'signup.html' , {'error_message': error_message})
 
 
+
+# VIEW FOR LOGINPAGE
+def LoginPage(request): 
+    try:   
+        if request.method=='POST':
+            username=request.POST.get('username')
+            pass1=request.POST.get('pass')
+            user=authenticate(request,username=username,password=pass1)
+            
+            if user is not None:
+                login(request,user)
+                return redirect('ThoughtListView')
+            else:
+                error_message = "Username or password do not match"
+                return render (request,'login.html' , {'error_message': error_message})
+                
+        return render (request,'login.html')
+    
+    except:
+        error_message = "All fields required"
+        return render (request,'signup.html' , {'error_message': error_message})
+
+
+
+# VIEW FOR LOGOUT
 def LogoutPage(request):
     logout(request)
     return redirect('home')

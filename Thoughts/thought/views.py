@@ -28,7 +28,6 @@ class ThoughtCreateView(CreateView):
 
 
 # # VIEW FOR THOUGHT LIST
-
 class ThoughtListView(ListView):
     model = Thought
     paginate_by = 9
