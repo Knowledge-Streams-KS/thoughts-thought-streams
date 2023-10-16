@@ -87,29 +87,27 @@ button{
     border-radius: 5px;
     cursor: pointer;
 }
+h6{
+ color: red;
+}
 
     </style>
 </head>
 <body>
-    {% comment %} <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div> {% endcomment %}
+
     <form method="post">
         <h3>Login Here</h3>
         {% csrf_token %} 
         <label for="username">Username</label>
-        <input type="text" placeholder="Enter Username" id="username" name="username">
+        <input type="text" placeholder="Enter Username" id="username" name="username" value="">
 
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password" name="pass">
+        <input type="password" placeholder="Password" id="password" name="pass" value="">
 
         <button type="submit">Log In</button>
-        <!-- <input type="button" value=""> -->
-        <!-- <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div> -->
+        {% if error_message %}
+         <h6>{{ error_message }}</h6>
+        {% endif %}
         <a href="{% url 'signup' %}" >Create a account</a>
     </form>
 </body>
