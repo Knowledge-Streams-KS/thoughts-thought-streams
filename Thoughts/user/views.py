@@ -48,7 +48,7 @@ def SignupPage(request):
                 error_message = "Password do not match!!"
                 return render (request,'signup.html' , {'error_message': error_message})
             
-            elif len(pass1)<=8:
+            elif len(pass1)<=7:
                 error_message = "Password must be 8 character atleast!!"
                 return render (request,'signup.html' , {'error_message': error_message})
 
