@@ -18,7 +18,7 @@ def HomePage(request):
 
 
 # VIEW FOR SIGNUP PAGE
-def SignupPage(request):
+def Signup(request):
     try:
         if request.method=='POST':
             uname=request.POST.get('username')
@@ -66,7 +66,7 @@ def SignupPage(request):
 
 
 # VIEW FOR LOGINPAGE
-def LoginPage(request): 
+def Login(request): 
     try:   
         if request.method=='POST':
             username=request.POST.get('username')
@@ -89,7 +89,7 @@ def LoginPage(request):
 
 
 # VIEW FOR LOGOUT
-def LogoutPage(request):
+def Logout(request):
     logout(request)
     return redirect('home')
 
