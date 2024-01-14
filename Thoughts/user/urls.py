@@ -5,9 +5,9 @@ urlpatterns = [
     
     
     path('',views.HomePage,name='home'),
-    path('signup/',views.SignupPage,name='signup'),
-    path('login/',views.LoginPage,name='login'),
-    path('logout/',views.LogoutPage,name='logout'),
+    path('signup/',views.Signup,name='signup'),
+    path('login/',views.Login,name='login'),
+    path('logout/',views.Logout,name='logout'),
     
     path('ProfileCreateView/', views.ProfileCreateView.as_view(), name= 'ProfileCreateView'),
     # path('ProfileUpdateView/<int:pk>', views.ProfileUpdateView.as_view(), name= 'ProfileUpdateView'),
